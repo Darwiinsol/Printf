@@ -50,6 +50,12 @@ CC = gcc
 SRC_NAME = ft_printf.c \
 	ft_itoa_printf.c \
 	ft_length_modifier.c \
+	ft_check_if_flags_int.c \
+	ft_size_lenght_int.c \
+	ft_size_prec_int.c \
+	ft_join_lenght_int.c \
+	ft_join_flags_int.c \
+	ftf_join_flags.c \
 	ft_printf_di.c
 
 SRC = $(addprefix $(SRCDIR)/, $(SRC_NAME))

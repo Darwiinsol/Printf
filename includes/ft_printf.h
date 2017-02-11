@@ -46,5 +46,11 @@ int				ft_printf_di(va_list ap, char i, t_flags b);
 int				ft_modifier(char i);
 int				ft_flags(char i);
 char			*ft_itoa_intmax_t(intmax_t n);
+char			*ft_check_if_flags_int(t_flags b, char *str);
+char			*ft_join_flags_int(t_flags b, char *str);
+char			*ft_size_prec_int(t_flags b, char *str);
+char			*ft_size_lenght_int(t_flags b, char *str);
+char			*ft_join_lenght_int(t_flags b, char *tmp, char *str);
+char			*ftf_join_flags(char *str, t_flags b, char *tmp);
 
 #endif

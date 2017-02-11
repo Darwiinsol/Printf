@@ -30,5 +30,7 @@ intmax_t		ft_length_modifier_signed(va_list ap, t_flags b)
 	}
 	else if (b.l == 2)
 		i = (intmax_t)va_arg(ap, long long);
+	else
+	  i = (intmax_t)va_arg(ap, int);
 	return(i);
 }
