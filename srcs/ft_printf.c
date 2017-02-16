@@ -14,7 +14,7 @@
 
 t_flags				ft_check_flags(char i, t_flags b)
 {
-	if (i == '#' || i == '0' || i == '-' || i == '+')
+	if (i == '#' || i == '0' || i == '-' || i == '+' || i == ' ')
 	{
 		if (i == '#')
 			b.sharp = 1;
@@ -33,7 +33,7 @@ t_flags				ft_check_flags(char i, t_flags b)
 
 int					ft_flags(char i)
 {
-	if (i == '#' || i == '0' || i == '-' || i == '+')
+	if (i == '#' || i == '0' || i == '-' || i == '+' || i == ' ')
 		return(1);
 	return(0);
 }
@@ -72,39 +72,23 @@ t_flags				ft_check_modifier(char i, char j, t_flags b)
 
 int				ft_check_letter(va_list ap, char i, t_flags b)
 {
-	if (i == 'd' || i == 'D' || i == 'i')
-		return(ft_printf_di(ap, i, b));
-/*	else if (i == '%')
+  if (i == 'd' || i == 'D' || i == 'i')
+    return(ft_printf_di(ap, i, b));
+	/*	else if (i == '%')
 		return(ft_printf_percent(ap, b));
 	else if (i == 's')
-		return(ft_printf_string(ap, b));
-	else if (i == 'c' || i == 'C')
-		return(ft_printf_char(ap, i, b));
-	else if (i == 'x' || i == 'X')
-		return(ft_printf_hexa(ap, i, b));
+	return(ft_printf_string(ap, b));*/
+  else if (i == 'c' || i == 'C')
+    return(ft_printf_char(ap, b, i));
+  /*  else if (i == 'x' || i == 'X')
+    return(ft_printf_hexa(ap, i, b));
 	else if (i == 'o' || i == 'O')
 		return(ft_printf_octal(ap, i, b));
 	else if (i == 'u' || i == 'U')
 		return(ft_printf_unsigned(ap, i, b));
 */	return(0);		   
 }
-/*
-t_flags			ft_get_precision(const char *c, int *i, t_flags b)
-{
-	if (ft_isdigit(c[*i + 1]))
-	  {
-	    printf("ici = %c\n", c[*i + 1]);
-	    printf("atoi de i %d\n", ft_atoi(&c[*i]));
-		b.precision = ft_atoi(&c[*i]);
-		printf("la probleme = %d\n", b.precision);
-		while (ft_isdigit(c[*i + 1]))
-		  *i = *i + 1;
-	  }
-	else
-	  b.precision = 0;
-	return (b);
-}
-*/
+
 int				ft_printf(const char *format, ...)
 {
 	va_list		ap;
@@ -117,9 +101,9 @@ int				ft_printf(const char *format, ...)
 		return(-1);
 	i = 0;
 	len = 0;
-	b = (t_flags){0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	while (format[i])
 	{
+	  b = (t_flags){0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		if (format[i] == '%')
 		{
 			i++;
@@ -127,7 +111,7 @@ int				ft_printf(const char *format, ...)
 			{ 
 				b = ft_check_flags(format[i], b);
 /////////////////////////////////////////////////
-				//printf("b.minus = %d\n", b.minus);
+				//printf("b.blank = %d\n", b.blank);
 //////////////////////////////////////////////////
 				i++;
 			}
@@ -155,7 +139,7 @@ int				ft_printf(const char *format, ...)
 			  else
 			    b.precision = 0;
 /////////////////////////////////////////////////
-			  //printf("b.precision = %d\n", b.precision);
+			  //printf("b.precision = %d --", b.precision);
 ////////////////////////////////////////////////
 			}
 			if (ft_modifier(format[i]))
@@ -180,12 +164,5 @@ int				ft_printf(const char *format, ...)
 		} 
 	}
 	va_end(ap);
-	return (0);
-}
-
-int     main()
-{
-  printf("   Printf (-10.5d)+ : |%-10.11d|\n", -42);
-  ft_printf("ft_printf (-10.5d)+ : |%-10.11d, %5.5d  |\n", -42, 42);
-    return(0);
+	return (len);
 }

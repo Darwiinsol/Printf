@@ -7,7 +7,8 @@ char		       *ft_size_prec_int(t_flags b, char *str)
 
   if (b.precision <= (int)ft_strlen(str))
     return (str);
-  tmp = (char *)malloc(sizeof(char) * (b.precision - ft_strlen(str)));
+  if (!(tmp = (char *)malloc(sizeof(char) * (b.precision - ft_strlen(str) + 1))))
+    return (NULL);
   tmp = ft_memset(tmp, '0', b.precision - ft_strlen(str));
   tmp[b.precision - ft_strlen(str)] = '\0';
   tmp2 = str;

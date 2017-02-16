@@ -38,6 +38,7 @@ typedef struct			s_flags
 }						t_flags;
 
 int             ft_printf(const char *format, ...);
+int		ft_printf_char(va_list ap, t_flags b, char i);
 int				ft_check_letter(va_list ap, char i, t_flags b);
 t_flags			ft_check_modifier(char i, char j, t_flags b);
 t_flags			ft_check_flags(char i, t_flags b);
@@ -45,12 +46,19 @@ intmax_t		ft_length_modifier_signed(va_list ap, t_flags b);
 int				ft_printf_di(va_list ap, char i, t_flags b);
 int				ft_modifier(char i);
 int				ft_flags(char i);
-char			*ft_itoa_intmax_t(intmax_t n);
+char			*ft_itoa_intmax(intmax_t n);
 char			*ft_check_if_flags_int(t_flags b, char *str);
+char			*ft_check_if_flags_str(t_flags b, char *str);
 char			*ft_join_flags_int(t_flags b, char *str);
 char			*ft_size_prec_int(t_flags b, char *str);
 char			*ft_size_lenght_int(t_flags b, char *str);
+char			*ft_size_lenght_str(t_flags b, char *str);
 char			*ft_join_lenght_int(t_flags b, char *tmp, char *str);
 char			*ftf_join_flags(char *str, t_flags b, char *tmp);
+char			*ft_is_plus(t_flags b, char *str);
+char            *ft_is_blank(char *str);
+char            *ft_itoa_intmax_t(intmax_t n);
+char		*ft_strchar(char c, size_t size);
+int		ft_free_return(char **str);
 
 #endif

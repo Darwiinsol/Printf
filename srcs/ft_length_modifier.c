@@ -33,3 +33,25 @@ intmax_t		ft_length_modifier_signed(va_list ap, t_flags b)
 	  i = (intmax_t)va_arg(ap, int);
 	return(i);
 }
+
+uintmax_t		ft_lenght_modifier_signed(va_list ap, t_flags b)
+{
+  uintmax_t        i;
+
+  i = 0;
+  if (b.h == 2)
+    i = (uintmax_t)(unsigned char)va_arg(ap, unsigned int);
+  else if (b.h == 1)
+    i = (uintmax_t)(unsigned short)va_arg(ap, unsigned int);
+  else if (b.l == 1 || b.letter == 'U' || b.letter == 'O'))
+    i = (uintmax_t)va_arg(ap, unsigned long);
+  else if (b.l == 2)
+    i = (uintmax_t)va_arg(ap, unsigned long long);
+  else if (b.j == 1)
+    i = va_arg(ap, uintmax_t);
+  else if (b.z == 1)
+    i = (uintmax_t)va_arg(ap, size_t);
+  else
+    i = (uintmax_t)va_arg(ap, unsigned int);
+  return(i);
+}

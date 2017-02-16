@@ -1,37 +1,60 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: apissier <apissier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 10:29:25 by apissier          #+#    #+#             */
-/*   Updated: 2017/02/06 13:47:17 by apissier         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/ft_printf.h"
 
-char		*ft_itoa_intmax_t(intmax_t n)
+static void		n_isnegative(intmax_t *n, int *is_negative)
 {
-	char	*str;
+  if (*n < 0)
+    {
+      *is_negative = 1;
+      *n = *n * -1;
+    }
+}
 
-	if (!(str = (char *)malloc(sizeof(char) * 2)))
-		return (NULL);
-	if (n == -9223372036854775807)
-		return (ft_strcpy(str, "-9223372036854775807"));
-	if (n < 0)
-	{
-		str[0] = '-';
-		str[1] = '\0';
-		str = ft_strjoin(str, ft_itoa_intmax_t(-n));
-	}
-	else if (n >= 10)
-		str = ft_strjoin(ft_itoa_intmax_t(n / 10), ft_itoa_intmax_t(n % 10));
-	else if (n < 10 && n >= 0)
-	{
-		str[0] = n + '0';
-		str[1] = '\0';
-	}
-	return (str);
+char			*ft_itoa_intmax(intmax_t n)
+{
+  int		i;
+  char		*str;
+  int		is_negative;
+  intmax_t	tmp;
+
+  if (n < -9223372036854775807)
+    return (ft_strdup("-9223372036854775808"));
+  i = 2;
+  is_negative = 0;
+  tmp = n;
+  n_isnegative(&n, &is_negative);
+  while ((tmp = tmp / 10) != 0)
+    i++;
+  i = i + is_negative;
+  if ((str = (char *)malloc(sizeof(char) * i)) == NULL)
+    return (NULL);
+  str[--i] = '\0';
+  while (i-- > 0)
+    {
+      str[i] = n % 10 + '0';
+      n = n / 10;
+    }
+  if (is_negative == 1)
+    str[0] = '-';
+  return (str);
+}
+
+char			*ft_itoa_uintmax_t(uintmax_t n)
+{
+  int		i;
+  char		*str;
+  uintmax_t	tmp;
+
+  i = 2;
+  tmp = n;
+  while ((tmp = tmp / 10) != 0)
+    i++;
+  if ((str = (char *)malloc(sizeof(char) * i)) == NULL)
+    return (NULL);
+  str[--i] = '\0';
+  while (i-- > 0)
+    {
+      str[i] = n % 10 + '0';
+      n = n / 10;
+    }
+  return (str);
 }

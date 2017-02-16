@@ -15,7 +15,7 @@
 
 int			main()
 {
-	setlocale(LC_ALL, "en_US.utf8");
+  	setlocale(LC_ALL, "en_US.utf8");
 	printf("\033[32m          -----Test Printf %% -----\033[0m\n");
 	printf("%s %%\n", "Printf avec 2 % :");
 ////////////////////////////////////////////////////////////
@@ -25,7 +25,7 @@ int			main()
 	printf("%-c\n%c\n", 42, 42);
   	printf("Printf (C116) : %C\n", 116);
   	printf("Printf (C42) : %C\n", 42);
-  	printf("%-C\n%C\n", 42, 42);
+  	printf("|%-C||%C||%lc||%5C|\n", 42, 42, 42, 42);
 ///////////////////////////////////////////////////////////
 	printf("\033[32m          -----Test Printf d|D -----\033[0m\n");
 	printf("Printf (+) : |%+2.5d||%+6.5d||%+5d||%+5.3d|\n", 42, 42, 42, 42);
@@ -146,5 +146,5 @@ int			main()
 	int *p = &a;
 	printf("\033[32m          -----Test Printf p -----\033[0m\n");
 	printf("Printf : |%p|\n", p);
-	return(0);
+  	return(0);
 }

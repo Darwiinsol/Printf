@@ -13,8 +13,11 @@ char		*ft_join_lenght_int(t_flags b, char *tmp, char *str)
   else
     {
       tmp2 = str;
-      str = ftf_join_flags(tmp2, b, tmp);
-      free(tmp);
+      if (b.zero != 1)
+	str = ft_strjoin(tmp, tmp2);
+      else
+	str = ftf_join_flags(tmp2, b, tmp);
+      free(tmp2);
     }
   return (str);
 }

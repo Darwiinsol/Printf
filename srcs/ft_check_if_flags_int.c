@@ -32,6 +32,13 @@ char		*ft_check_if_flags_int(t_flags b, char *str)
       str = ft_strjoin("-", tmp);
       ft_memdel((void **)&tmp);
     }
+  ///////////////////////////////////
+  //printf("b.blank = %d\n", b.blank);
+  ///////////////////////////////////
+  if (b.plus == 1 && negative != 1)
+    str = ft_is_plus(b, str);
+  else if (b.blank == 1 && b.plus != 1 && negative != 1)
+    str = ft_is_blank(str);
   str = ft_join_flags_int(b, str);
   return(str);
 }
