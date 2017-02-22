@@ -98,10 +98,10 @@ int			main()
 	printf("Printf Yeah :	  |%S|\n", L"é");
 ///////////////////////////////////////////////////////////
 	printf("\033[32m          -----Test Printf x|X -----\033[0m\n");
-	printf("Printf (5x)- :     |%5x|\n", -42);
-  	printf("Printf (5x)+ :     |%5x|\n", 42);
-	printf("Printf (05x)- :    |%05x|\n", -42);
-	printf("Printf (05x)+ :    |%05x|\n", 42);
+	printf("Printf (x)- :      |%x|\n", -42);
+  	printf("Printf (x)+ :      |%x|\n", 42);
+	printf("Printf (X)- :      |%X|\n", -42);
+	printf("Printf (X)+ :      |%X|\n", 42);
 	printf("Printf (.5x)- :    |%.5x|\n", -42);
 	printf("Printf (5X)- :     |%5X|\n", -42);
 	printf("Printf (5X)+ :     |%5X|\n", 42);
@@ -124,6 +124,7 @@ int			main()
 	printf("Printf (3.3X) :    |%03.3X|\n", 42424242);
 ///////////////////////////////////////////////////////////
 	printf("\033[32m          -----Test Printf o|O -----\033[0m\n");
+	printf("Printf (42) :   |%#o||%#5o||%5o||%.5o|\n", 0, 42, 0, 0);
 	printf("Printf (.7) :   |%.7o|\n", 42);
 	printf("Printf (.7)- :  |%.7o|\n", -42);
 	printf("Printf (#.7) :  |%#.7o|\n", 42);
@@ -142,6 +143,7 @@ int			main()
 	printf("Printf (-42 U) :  |%U|\n", -42);
 	printf("Printf (10) :     |%u|\n", 10);
 	printf("Printf (-10) :    |%u|\n", -10);
+	printf("%05%\n");
 	int a = 42;
 	int *p = &a;
 	printf("\033[32m          -----Test Printf p -----\033[0m\n");

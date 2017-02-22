@@ -1,17 +1,79 @@
 #include "../includes/ft_printf.h"
 
-int	       ft_printf_hexa(va_list ap, t_flags b, char i)
+static char		*ft_int_to_hexa(uintmax_t u)
 {
-  uintmax_t	i;
+  char		*str;
+  uintmax_t	tmp;
+  int		cnt;
+
+  tmp = u;
+  cnt = 2;
+  while ((tmp = tmp / 16) != 0)
+    cnt++;
+  if ((str = (char *)malloc(sizeof(char) * cnt)) == NULL)
+    return (0);
+  str[--cnt] = '\0';
+  while (cnt-- > 0)
+    {
+      if (u % 16 < 10)
+	str[cnt] = (u % 16 + 48);
+      if (u % 16 >= 10)
+	str[cnt] = (u % 16 + 87);
+      u = u / 16;
+    }
+  return (str);
+}
+
+static char		*ft_int_to_hexa_maj(uintmax_t u)
+{
+  char          *str;
+  uintmax_t     tmp;
+  int           cnt;
+
+  tmp = u;
+  cnt = 2;
+  while ((tmp = tmp / 16) != 0)
+    cnt++;
+  if ((str = (char *)malloc(sizeof(char) * cnt)) == NULL)
+    return (0);
+  str[--cnt] = '\0';
+  while (cnt-- > 0)
+    {
+      if (u % 16 < 10)
+        str[cnt] = (u % 16 + 48);
+      if (u % 16 >= 10)
+	str[cnt] = (u % 16 + 55);
+      u = u / 16;
+    }
+  return (str);
+}
+
+int		ft_printf_hexa(va_list ap, t_flags b, char i)
+{
+  uintmax_t	u;
   char		*str;
   int		len;
 
-  i = ft_lenght_modifier_signed(ap, b);
-  if (i == 'x')
+  str = NULL;
+  u = ft_lenght_modifier_unsigned(ap, b);
+   if (b.precision == 0 && u == 0)
+    {
+      str = ft_strdup("");
+      str = ft_size_lenght_int(b, str); 
+    }
+   else if (u == 0)
+    str = ft_strdup("0");
+  else if (i == 'x')
     {
       b.letter = 'x';
-      
+      str = ft_int_to_hexa(u);
     }
+  else if (i == 'X')
+    {
+      b.letter = 'X';
+      str = ft_int_to_hexa_maj(u);
+    }
+  str = ft_check_if_flags_int(b, str);
   len = ft_free_return(&str);
   return (len);
 }

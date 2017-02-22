@@ -12,6 +12,30 @@
 
 #include "../includes/ft_printf.h"
 
+static char            *ft_itoa_intmax_t(intmax_t n)
+{
+  char          *str;
+
+  if (!(str = (char *)malloc(sizeof(char) * 2)))
+    return (NULL);
+  if (n == -9223372036854775807)
+    return (ft_strcpy(str, "-9223372036854775807"));
+  if (n < 0)
+    {
+      str[0] = '-';
+      str[1] = '\0';
+      str = ft_strjoin(str, ft_itoa_intmax_t(-n));
+    }
+  else if (n >= 10)
+    str = ft_strjoin(ft_itoa_intmax_t(n / 10), ft_itoa_intmax_t(n % 10));
+  else if (n < 10 && n >= 0)
+    {
+      str[0] = n + '0';
+      str[1] = '\0';
+    }
+  return (str);
+}
+
 int				ft_printf_di(va_list ap, char i, t_flags b)
 {
   /*intmax_t c pour gérer D qui est signed*/
@@ -32,7 +56,7 @@ int				ft_printf_di(va_list ap, char i, t_flags b)
 	//printf("i = %c", i);
 	/////////////////////////////
 	c = ft_length_modifier_signed(ap, b);
-	if (i == 0 && b.precision == 0)
+	if (c == 0 && b.precision == 0)
 		str = ft_strdup("");
 	else
 	  str = ft_itoa_intmax_t(c);
