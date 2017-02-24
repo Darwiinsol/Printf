@@ -54,6 +54,7 @@ SRC_NAME = main_test_2.c \
 	ft_size_lenght_int.c \
 	ft_size_lenght_str.c \
 	ft_size_prec_int.c \
+	ft_size_prec_str.c \
 	ft_join_lenght_int.c \
 	ft_join_flags_int.c \
 	ftf_join_flags.c \
@@ -66,6 +67,8 @@ SRC_NAME = main_test_2.c \
 	ft_printf_unsigned.c \
 	ft_printf_percent.c \
 	ft_check_flags_str.c \
+	ft_printf_pointer.c \
+	ft_printf_string.c \
 	ft_free_return.c \
 	ft_printf_di.c
 

@@ -18,7 +18,7 @@ static char		*ft_convert_octal(char *str, uintmax_t u, t_flags b)
       u = u / 8;
     }
   if (str[0] == '-')
-    str = strdup(&str[1]);
+    str = ft_strdup(&str[1]);
   if (b.sharp == 1)
     str = ft_strjoin("0", str);
   return (str);

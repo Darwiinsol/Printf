@@ -73,19 +73,21 @@ t_flags				ft_check_modifier(char i, char j, t_flags b)
 int				ft_check_letter(va_list ap, char i, t_flags b)
 {
   if (i == 'd' || i == 'D' || i == 'i')
-    return(ft_printf_di(ap, i, b));
+    return (ft_printf_di(ap, i, b));
   else if (i == '%')
-    return(ft_printf_percent(b));
-  //else if (i == 's')
-  //return(ft_printf_string(ap, b));
+    return (ft_printf_percent(b));
+  else if (i == 's')
+    return(ft_printf_string(ap, b));
   else if (i == 'c' || i == 'C')
-    return(ft_printf_char(ap, b, i));
+    return (ft_printf_char(ap, b, i));
   else if (i == 'x' || i == 'X')
-    return(ft_printf_hexa(ap, b, i));
+    return (ft_printf_hexa(ap, b, i));
   else if (i == 'o' || i == 'O')
-    return(ft_printf_octal(ap, b, i));
+    return (ft_printf_octal(ap, b, i));
   else if (i == 'u' || i == 'U')
-    return(ft_printf_unsigned(ap, b, i));
+    return (ft_printf_unsigned(ap, b, i));
+  else if (i == 'p')
+    return (ft_printf_pointer(ap, b));
   return(0);		   
 }
 

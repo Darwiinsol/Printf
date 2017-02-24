@@ -7,7 +7,7 @@ int             main()
   int b;
   
   printf("\033[32m-------------------------------------\033[0m\n");
-  printf("\033[32m|         Test Printf d|D|i          |\033[0m\n");
+  printf("\033[32m|        Test Printf d|D|i          |\033[0m\n");
   printf("\033[32m-------------------------------------\033[0m\n");
   a = printf("True => |%+2.5d||%6.5d||%5d||%.d|\n", 42, 42, 42, 0);
   b = ft_printf("Mine => |%+2.5d||%6.5d||%5d||%.d|\n", 42, 42, 42, 0);
@@ -77,7 +77,7 @@ int             main()
   else
     printf("\033[32;1m[ OK ]\033[0m\n\n");
   printf("\033[32m-------------------------------------\033[0m\n");
-  printf("\033[32m|          Test Printf c|C           |\033[0m\n");
+  printf("\033[32m|         Test Printf c|C           |\033[0m\n");
   printf("\033[32m-------------------------------------\033[0m\n");
   a = printf("True => |%-c||%lc||%c||%c||%-c|%c||%-5c||%5c|\n", 98, 98, 42, 24, 150, 50, 50, 50);
   b = ft_printf("Mine => |%-c||%lc||%c||%c||%-c|%c||%-5c||%5c|\n", 98, 98, 42, 24, 150, 50, 50, 50);
@@ -86,16 +86,16 @@ int             main()
   else
     printf("\033[32;1m[ OK ]\033[0m\n\n");
   printf("\033[32m-------------------------------------\033[0m\n");
-  printf("\033[32m|          Test Printf x|X           |\033[0m\n");
+  printf("\033[32m|         Test Printf x|X           |\033[0m\n");
   printf("\033[32m-------------------------------------\033[0m\n");
-  a = printf("True => |%2.5x||%.x||%5x||%5.3x|\n", 0x42, 0, 42, -420);
-  b = ft_printf("Mine => |%2.5x||%.x||%5x||%5.3x|\n", 0x42, 0, 42, -420);
+  a = printf("True => |%2.5x||%.x||%5x||%5.3x||%#08x|\n", 0x42, 0, 42, -420, 42);
+  b = ft_printf("Mine => |%2.5x||%.x||%5x||%5.3x||%#08x|\n", 0x42, 0, 42, -420, 42);
   if (a != b)
     printf("\033[31;1m[ FAIL ]\033[0m\n\n");
   else
     printf("\033[32;1m[ OK ]\033[0m\n\n");
-  a = printf("True => |%0x||%0x||%05x||%00x||%.x|\n", 50, 60, 0x0100, 26, 0);
-  b = ft_printf("Mine => |%0x||%0x||%05x||%00x||%.x|\n", 50, 60, 0x0100, 26, 0);
+  a = printf("True => |%#X||%0x||%#06x||%00x||%.x|\n", 50, 60, 0x0100, 26, 0);
+  b = ft_printf("Mine => |%#X||%0x||%#06x||%00x||%.x|\n", 50, 60, 0x0100, 26, 0);
   if (a != b)
     printf("\033[31;1m[ FAIL ]\033[0m\n\n");
   else
@@ -113,7 +113,7 @@ int             main()
   else
     printf("\033[32;1m[ OK ]\033[0m\n\n");
   printf("\033[32m-------------------------------------\033[0m\n");
-  printf("\033[32m|          Test Printf o|O           |\033[0m\n");
+  printf("\033[32m|         Test Printf o|O           |\033[0m\n");
   printf("\033[32m-------------------------------------\033[0m\n");
   a = printf("True => |%#2.5o||%6.5o||%5o||%5.3o||%#o|\n", 0x42, 42, 42, 420, 0);
   b = ft_printf("Mine => |%#2.5o||%6.5o||%5o||%5.3o||%#o|\n", 0x42, 42, 42, 420, 0);
@@ -128,7 +128,7 @@ int             main()
   else
     printf("\033[32;1m[ OK ]\033[0m\n\n");
   printf("\033[32m-------------------------------------\033[0m\n");
-  printf("\033[32m|          Test Printf u|U           |\033[0m\n");
+  printf("\033[32m|         Test Printf u|U           |\033[0m\n");
   printf("\033[32m-------------------------------------\033[0m\n");
   a = printf("True => |%2.5u||%5u||%5u||%5U||%-5.3u||%.u|\n", 0x42, 0, 42, 42, 420, -32);
   b = ft_printf("Mine => |%2.5u||%5u||%5u||%5U||%-5.3u||%.u|\n", 0x42, 0, 42, 42, 420, -32);
@@ -144,7 +144,7 @@ int             main()
   else
     printf("\033[32;1m[ OK ]\033[0m\n\n");
   printf("\033[32m-------------------------------------\033[0m\n");
-  printf("\033[32m|        Test Printf percent         |\033[0m\n");
+  printf("\033[32m|       Test Printf percent         |\033[0m\n");
   printf("\033[32m-------------------------------------\033[0m\n");
   a = printf("True => |%%||%.5%||%5.5%||%0%||%05%||%-5%|\n");
   b = ft_printf("Mine => |%%||%.5%||%5.5%||%0%||%05%||%-5%|\n");
@@ -152,5 +152,32 @@ int             main()
     printf("\033[31;1m[ FAIL ]\033[0m\n\n");
   else
     printf("\033[32;1m[ OK ]\033[0m\n\n");
+  printf("\033[32m-------------------------------------\033[0m\n");
+  printf("\033[32m|       Test Printf pointer         |\033[0m\n");
+  printf("\033[32m-------------------------------------\033[0m\n");
+  int e = 42;
+  int *p = &e;
+  a = printf("True => |%p|\n", p);
+  b = ft_printf("Mine => |%p|\n", p);
+  if (a != b)
+    printf("\033[31;1m[ FAIL ]\033[0m\n\n");
+  else
+    printf("\033[32;1m[ OK ]\033[0m\n\n");
+  a = printf("True => |%p|\n", "Hello World");
+  b = ft_printf("Mine => |%p|\n", "Hello World");
+  if (a != b)
+    printf("\033[31;1m[ FAIL ]\033[0m\n\n");
+  else
+    printf("\033[32;1m[ OK ]\033[0m\n\n");
+  printf("\033[32m-------------------------------------\033[0m\n");
+  printf("\033[32m|         Test Printf s|S           |\033[0m\n");
+  printf("\033[32m-------------------------------------\033[0m\n");
+  a = printf("True => |%s||%.5s|\n", "Hello World", "Hello World");
+  b = ft_printf("Mine => |%s||%.5s|\n", "Hello World", "Hello World");
+  if (a != b)
+    printf("\033[31;1m[ FAIL ]\033[0m\n\n");
+  else
+    printf("\033[32;1m[ OK ]\033[0m\n\n");
+
   return(0);
 }

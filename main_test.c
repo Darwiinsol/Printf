@@ -92,7 +92,11 @@ int			main()
 	printf("Printf (zd >> s) :           |%zd|\n", s);
 ///////////////////////////////////////////////////////////
 	printf("\033[32m          -----Test Printf s -----\033[0m\n");
+	char y = 'é';
+	wchar_t *z = &y;
 	printf("Printf Yeah :     |%-s|\n", "Yeah");
+	printf("Printf Yeah :     |%S|\n", "Yeah");
+	printf("Printf Yeah :     |%ls|\n", z);
 	printf("Printf Yeah :     |%-4.3s|\n", "Yeah");
 	printf("Printf Yeah :     |%4.3s|\n", "Yeah");
 	printf("Printf Yeah :	  |%S|\n", L"é");
@@ -148,5 +152,7 @@ int			main()
 	int *p = &a;
 	printf("\033[32m          -----Test Printf p -----\033[0m\n");
 	printf("Printf : |%p|\n", p);
+	printf("Printf : |%#x|\n", (unsigned)(p));
+	printf("Printf : |%#lx|\n", (unsigned long)(p));
   	return(0);
 }
