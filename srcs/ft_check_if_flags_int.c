@@ -37,7 +37,7 @@ char		*ft_check_if_flags_int(t_flags b, char *str)
   ///////////////////////////////////
   if (b.plus == 1 && negative != 1)
     str = ft_is_plus(b, str);
-  else if (b.blank == 1 && b.plus != 1 && negative != 1)
+  else if (b.blank == 1 && b.plus != 1 && negative != 1 && b.letter != 'u' && b.letter != 'U')
     str = ft_is_blank(str);
   str = ft_join_flags_int(b, str);
   return(str);

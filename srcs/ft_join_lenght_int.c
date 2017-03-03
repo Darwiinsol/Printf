@@ -13,7 +13,7 @@ char		*ft_join_lenght_int(t_flags b, char *tmp, char *str)
   else
     {
       tmp2 = str;
-      if (b.zero != 1 && b.letter != 'x' && b.letter != 'X'))
+      if (b.zero != 1 && b.letter != 'x' && b.letter != 'X')
 	str = ft_strjoin(tmp, tmp2);
       else
 	str = ftf_join_flags(tmp2, b, tmp);

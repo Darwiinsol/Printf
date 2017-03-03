@@ -39,7 +39,9 @@ uintmax_t		ft_lenght_modifier_unsigned(va_list ap, t_flags b)
   uintmax_t        i;
 
   i = 0;
-  if (b.h == 2)
+  if (b.l == 1 || b.letter == 'U' || b.letter == 'O')
+    i = (uintmax_t)va_arg(ap, unsigned long);
+  else if (b.h == 2)
     i = (uintmax_t)(unsigned char)va_arg(ap, unsigned int);
   else if (b.h == 1)
     i = (uintmax_t)(unsigned short)va_arg(ap, unsigned int);

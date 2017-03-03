@@ -4,6 +4,8 @@ char		*ft_size_lenght_int(t_flags b, char *str)
 {
   char	*tmp;
 
+  if (b.lenght == 0)
+    return(str);
   if (b.lenght <= (int)ft_strlen(str))
     return (str);
   else

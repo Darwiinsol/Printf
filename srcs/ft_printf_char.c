@@ -17,18 +17,20 @@ int		ft_printf_char(va_list ap, t_flags b, char i)
   char		*str;
 
   str = NULL;
-  if (i == 'c')
-    {
-      b.letter = 'c';
-      c = (char)va_arg(ap, int);
-      str = ft_strchar(c, 1);
-    }
-  /* else if (*i == 'C')
+  i = '\0';
+  b.letter = 'c';
+  c = (char)va_arg(ap, int);
+  if (c == 0 && b.lenght >= 2)
+    b.lenght = 1;
+  str = ft_strchar(c, 1);
+    /* else if (*i == 'C')
     {
       b.letter = 'C'
       str = ft_printf_char_maj(ap, b);
       }*/
   str = ft_check_if_flags_str(b, str);
   len = ft_free_return(&str);
+  if (c == 0)
+    len += 1;
   return (len);
 }

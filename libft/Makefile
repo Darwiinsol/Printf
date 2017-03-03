@@ -17,7 +17,7 @@ SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 
 all:
-	    make $(NAME)
+	    @make $(NAME)
 
 $(NAME): $(OBJ)
 	    ar rc $(NAME) $(OBJ)

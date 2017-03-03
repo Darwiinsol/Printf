@@ -18,8 +18,8 @@ static char            *ft_itoa_intmax_t(intmax_t n)
 
   if (!(str = (char *)malloc(sizeof(char) * 2)))
     return (NULL);
-  if (n == -9223372036854775807)
-    return (ft_strcpy(str, "-9223372036854775807"));
+  if (n < -9223372036854775807)
+    return (ft_strdup("-9223372036854775808"));
   if (n < 0)
     {
       str[0] = '-';

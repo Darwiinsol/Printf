@@ -24,6 +24,8 @@ int		ft_printf_unsigned(va_list ap, t_flags b, char i)
 
   b.letter = i;
   u = ft_lenght_modifier_unsigned(ap, b);
+  /*  if (u == 0 && b.precision == 0)
+      str = ft_strdup("");*/
   str = ft_itoa_uintmax_t(u);
   str = ft_check_if_flags_int(b, str);
   len = ft_free_return(&str);

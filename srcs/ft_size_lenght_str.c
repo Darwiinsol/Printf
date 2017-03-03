@@ -12,8 +12,8 @@ char		*ft_size_lenght_str(t_flags b, char *str)
     {
       if (!(tmp = (char *)malloc(sizeof(char) * (len))))
 	return (NULL);
-      if (b.zero != 0 || b.precision != -1)
-	return (str);
+      /*if (b.zero != 0 || b.precision != -1)
+	return (str);*/
       else
 	tmp = ft_memset(tmp, ' ', b.lenght - ft_strlen(str));
       tmp[b.lenght - ft_strlen(str)] = '\0';
