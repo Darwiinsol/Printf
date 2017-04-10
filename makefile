@@ -1,12 +1,12 @@
 #******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: apissier <apissier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/02/06 19:45:08 by apissier          #+#    #+#              #
-#    Updated: 2017/02/08 15:27:42 by apissier         ###   ########.fr        #
+#    Created: 2017/03/07 10:36:13 by apissier          #+#    #+#              #
+#    Updated: 2017/04/10 18:35:55 by apissier         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -25,30 +25,11 @@ LOG_VIOLET      = \033[1;35m
 LOG_CYAN        = \033[1;36m
 LOG_WHITE       = \033[1;37m
 
-ifneq ($(words $(MAKECMDGOALS)),1)
-.DEFAULT_GOAL = all
-%:
-	@$(MAKE) $@ --no-print-directory -rRf $(firstword $(MAKEFILE_LIST))
-else
-ifndef ECHO
-T := $(shell $(MAKE) $(MAKECMDGOALS) --no-print-directory \
-      -nrRf $(firstword $(MAKEFILE_LIST)) \
-      ECHO="COUNTTHIS" | grep -c "COUNTTHIS")
-
-N := x
-C = $(words $N)$(eval N := x $N)
-ECHO = echo -ne "$(LOG_CLEAR)\r [`expr $C '*' 100 / $T`%]"
-endif
-
-
-NAME = ft_printf
-
-CFLAGS = -Wall -Wextra -Werror
-
-CC = gcc
-
-SRC_NAME = main_test_2.c \
-	ft_printf.c \
+NAME = libftprintf.a
+FLAG = -Wall -Werror -Wextra
+LIB = ./libft/libft.a
+SRCS_NAME = ft_printf.c \
+	ft_check.c \
 	ft_length_modifier.c \
 	ft_check_if_flags_int.c \
 	ft_size_lenght_int.c \
@@ -62,7 +43,7 @@ SRC_NAME = main_test_2.c \
 	ft_is_plus.c \
 	ft_strchar.c \
 	ft_printf_char.c \
-        ft_printf_hexa.c \
+    ft_printf_hexa.c \
 	ft_printf_octal.c \
 	ft_printf_unsigned.c \
 	ft_printf_percent.c \
@@ -71,83 +52,52 @@ SRC_NAME = main_test_2.c \
 	ft_printf_string.c \
 	ft_free_return.c \
 	ft_printf_di.c
+SRCS_PATH		=		srcs/
+SRCS			=		$(addprefix $(SRCS_PATH), $(SRCS_NAME))
+OBJ_NAME		=		$(SRCS_NAME:.c=.o)
+OBJ_PATH		=		obj/
+OBJ				=		$(addprefix $(OBJ_PATH), $(OBJ_NAME))
+INC				=		./includes/
 
-SRC = $(addprefix $(SRCDIR)/, $(SRC_NAME))
+#COLORS
+C_GREEN			=	"\033[33m"
+C_END			= 	"\033[0m"
 
-LIBFT = -Llibft/ -lft
-
-OBJDIR = objs
-SRCDIR = ./srcs/
-INCDIR = ./includes \
-		./libft/libft.h
-
-OBJ = $(addprefix $(OBJDIR)/, $(SRC_NAME:.c=.o))
+#MESSAGE
+SUCCESS			=	SUCCESS$(C_END)
 
 all: $(NAME)
-		@$(ECHO) "$(LOG_GREEN)All done$(LOG_NOCOLOR)"
-		@echo "                                _---_"
-		@echo "                             __/     \__"
-		@echo "                           _/        _ - "
-		@echo "                          /          \'$(LOG_RED)*******$(LOG_WHITE)"
-		@echo "                          |  /    \   \$(LOG_RED)*************$(LOG_WHITE)"
-		@echo "                          |            |$(LOG_RED)***************$(LOG_WHITE)"
-		@echo " $(LOG_RED)                       **$(LOG_WHITE)(  ()  ()    )$(LOG_RED)******************"
-		@echo "                      ***$(LOG_WHITE)/            \ $(LOG_RED)********************" 
-		@echo "                    ****$(LOG_WHITE)/              \ $(LOG_RED)      ***************"
-		@echo "                   ****$(LOG_WHITE)/      --'       \ $(LOG_RED)        ************"
-		@echo "                  ****$(LOG_WHITE)(        _         )-----__ $(LOG_RED) ***********"
-		@echo "                 *****$(LOG_WHITE)|       / \        |       \ $(LOG_RED)*************"
-		@echo "                *******$(LOG_WHITE)\      \_/       /$(LOG_RED)      *****************$(LOG_WHITE)_"
-		@echo "               $(LOG_RED)*********$(LOG_WHITE)|              /$(LOG_RED)     ******************$(LOG_WHITE)/ )"
-		@echo "               $(LOG_RED)*********$(LOG_WHITE)\    ---'      $(LOG_RED)    ******************$(LOG_WHITE)/  /"
-		@echo "              $(LOG_RED)********$(LOG_WHITE)/                  $(LOG_RED)**************$(LOG_WHITE)--_$(LOG_RED)*$(LOG_WHITE)/   /$(LOG_RED)*"
-		@echo "              $(LOG_RED)******$(LOG_WHITE)/                   $(LOG_RED)**************$(LOG_WHITE)    '    |$(LOG_RED)**$(LOG_WHITE)_"
-		@echo "              $(LOG_RED)*****$(LOG_WHITE)/                  $(LOG_RED)************** $(LOG_WHITE)           ____)"
-		@echo "     _____   $(LOG_RED)*****$(LOG_WHITE)/                 $(LOG_RED)***************$(LOG_WHITE)\_/      ____  \$(LOG_RED)*$(LOG_WHITE)"
-		@echo "    (__   \__$(LOG_RED)****$(LOG_WHITE)/                $(LOG_RED)*************** $(LOG_WHITE) /    /__/$(LOG_RED)****$(LOG_WHITE)\__)"
-		@echo "      __\                 /    $(LOG_RED)***************   $(LOG_WHITE) |  _/  $(LOG_RED)*********$(LOG_WHITE)"
-		@echo "    (_____              _/\  $(LOG_RED)**************       $(LOG_WHITE) /_/    $(LOG_RED)*********$(LOG_WHITE)"
-		@echo "        /            __/  \$(LOG_RED)**************                 *********$(LOG_WHITE)"
-		@echo "       / ____\  \__/$(LOG_RED)***  **************                   **********$(LOG_WHITE)"
-		@echo "       |_/    \_  \$(LOG_RED)*******************                   **********$(LOG_WHITE)"
-		@echo "               $(LOG_RED)*$(LOG_WHITE)\__\$(LOG_RED)****************                    *********"
-		@echo "                $(LOG_RED)******************$(LOG_WHITE)\__________         $(LOG_RED) **********"
-		@echo "                  $(LOG_RED)************** $(LOG_WHITE) /                 $(LOG_RED) ***********"
-		@echo "                  $(LOG_RED)************ $(LOG_WHITE) _/                 $(LOG_RED) ************"
-		@echo "                  $(LOG_RED)*************$(LOG_WHITE)/                 $(LOG_RED) *************"
-		@echo "                    $(LOG_RED)***************          ***************"
-		@echo "                      $(LOG_RED)**************************************"
-		@echo "                        $(LOG_RED)**********************************"
-		@echo "                            $(LOG_RED)*****************************"
-		@echo "                              $(LOG_RED)***********************"
-		@echo "                                  $(LOG_RED)***************"
-		
+
 $(NAME): $(OBJ)
-		@$(ECHO) "$(LOG_BLUE)Make Libft in progress...$(LOG_NOCOLOR)$(LOG_UP)"
+	@echo "$(LOG_CLEAR)$(LOG_BLUE)Make Libft in progress...$(LOG_NOCOLOR)$(LOG_UP)"
+	@make -C ./libft/
+	@cp libft/libft.a ./$(NAME)
+	@echo "$(LOG_CLEAR)$(LOG_GREEN)Make Libft done$(LOG_NOCOLOR)"
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "$(LOG_CLEAR)$(LOG_GREEN)  $@ compilation done$(LOG_NOCOLOR)"
+
+$(OBJ_PATH)%.o: $(SRCS_PATH)%.c
+	@mkdir -p obj
+	@echo "$(LOG_CLEAR)$(LOG_BLUE)$@ compilation in progress...$(LOG_NOCOLOR)$(LOG_UP)"
+	@gcc -c $(FLAGS) -I $(INC) $< -o $@
+	@echo "$(LOG_CLEAR)$(LOG_GREEN)  $@ compilation done$(LOG_NOCOLOR)$(LOG_UP)"
+
+exe:
 		@make -C ./libft/
-		@$(CC) $(CFLAGS) -Ilibft/includes/ -Llibft/ -lft -I. -o $@ $(OBJ)
-		@$(ECHO) "$(LOG_GREEN)Make Libft done$(LOG_NOCOLOR)"
+		@cc $(FLAG) $(SRCS) ./srcs/main_test.c -g $(LIB) -o ft_printf
+		@echo "$(LOG_CLEAR)$(C_GREEN)"Compiling" [ ft_printf ] $(SUCCESS)"
+		@./ft_printf
 
-$(OBJDIR)/%.o : ./srcs/%.c
-		@/bin/mkdir -p $(OBJDIR)
-		@$(ECHO) "$(LOG_BLUE)$@ compilation in progress...$(LOG_NOCOLOR)$(LOG_UP)"
-		@sleep 0.3
-		@$(CC) $(CFLAGS) -Ilibft/includes/ -I. -c -o $@ $<
-		@$(ECHO) "$(LOG_GREEN)	$@ compilation done$(LOG_NOCOLOR)$(LOG_UP)"
-
-clean:
-		@rm -rf $(OBJDIR)
-		@make -C ./libft clean
-		@$(ECHO) "$(LOG_RED)Clean done$(LOG_NOCOLOR)$(LOG_UP)"
-		@sleep 0.5
+clean:	
+	@make -C ./libft/ fclean
+	@/bin/rm -rf $(OBJ_PATH)
+	@echo "$(LOG_CLEAR)$(LOG_RED)Clean done$(LOG_NOCOLOR)"
 
 fclean: clean
-		@rm -rf $(NAME) $(OBJDIR)
-		@make -C ./libft fclean
-		@$(ECHO) "$(LOG_RED)fclean done$(LOG_NOCOLOR)"
+	@/bin/rm -rf $(NAME)
+	@echo "$(LOG_CLEAR)$(LOG_CLEAR)$(LOG_RED)Fclean done$(LOG_NOCOLOR)"
 
 re: fclean all
 
-.PHONY: make all fclean clean re
-
-endif
+.PHONY: all clean fclean re

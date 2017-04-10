@@ -6,7 +6,7 @@
 /*   By: apissier <apissier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 16:16:46 by apissier          #+#    #+#             */
-/*   Updated: 2016/11/25 16:38:58 by apissier         ###   ########.fr       */
+/*   Updated: 2016/12/02 12:21:51 by apissier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void				ft_striteri(char *s, void (*f)(unsigned int, char *))
 	unsigned int	i;
 
 	i = 0;
-	if (s == NULL)
+	if (s == NULL || f == NULL)
 		return ;
 	while (*s)
 	{

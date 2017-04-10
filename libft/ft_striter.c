@@ -6,7 +6,7 @@
 /*   By: apissier <apissier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 16:48:55 by apissier          #+#    #+#             */
-/*   Updated: 2016/11/25 16:35:14 by apissier         ###   ########.fr       */
+/*   Updated: 2016/12/02 12:20:59 by apissier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		ft_striter(char *s, void (*f)(char *))
 {
-	if (s == NULL)
+	if (s == NULL || f == NULL)
 		return ;
 	while (*s)
 		f(s++);

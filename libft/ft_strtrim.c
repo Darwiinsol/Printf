@@ -6,7 +6,7 @@
 /*   By: apissier <apissier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 16:49:33 by apissier          #+#    #+#             */
-/*   Updated: 2016/11/30 17:32:27 by apissier         ###   ########.fr       */
+/*   Updated: 2016/12/02 11:56:26 by apissier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char		*ft_strtrim(char const *s)
 {
-	char	*new;
+	char	*str;
 	int		i;
 	int		j;
 	int		k;
@@ -32,11 +32,10 @@ char		*ft_strtrim(char const *s)
 		return (ft_strnew(0));
 	while (s[j - 1] == ' ' || s[j - 1] == '\n' || s[j - 1] == '\t')
 		j--;
-	new = (char*)malloc(sizeof(char) * (j - i + 1));
-	if (new == NULL)
+	if (!(str = (char *)malloc(sizeof(char) * (j - i + 1))))
 		return (NULL);
 	while (i < j)
-		new[k++] = s[i++];
-	new[k] = '\0';
-	return (new);
+		str[k++] = s[i++];
+	str[k] = '\0';
+	return (str);
 }
