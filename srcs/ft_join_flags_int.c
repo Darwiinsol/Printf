@@ -6,7 +6,7 @@
 /*   By: apissier <apissier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 15:43:29 by apissier          #+#    #+#             */
-/*   Updated: 2017/03/24 18:36:17 by apissier         ###   ########.fr       */
+/*   Updated: 2017/04/12 19:47:48 by apissier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char		*ft_join_flags_int(t_flags b, char *str)
 {
-	if (b.sharp == 1 && b.letter == 'x')
+	if ((b.sharp == 1 && b.letter == 'x') || b.letter == 'p')
 		str = ft_strjoinffree("0x", str);
 	if (b.sharp == 1 && b.letter == 'X')
 		str = ft_strjoinffree("0X", str);

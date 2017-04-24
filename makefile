@@ -6,7 +6,7 @@
 #    By: apissier <apissier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/07 10:36:13 by apissier          #+#    #+#              #
-#    Updated: 2017/04/10 18:35:55 by apissier         ###   ########.fr        #
+#    Updated: 2017/04/24 18:06:09 by apissier         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -30,12 +30,14 @@ FLAG = -Wall -Werror -Wextra
 LIB = ./libft/libft.a
 SRCS_NAME = ft_printf.c \
 	ft_check.c \
+	ft_check2.c \
 	ft_length_modifier.c \
 	ft_check_if_flags_int.c \
 	ft_size_lenght_int.c \
 	ft_size_lenght_str.c \
 	ft_size_prec_int.c \
 	ft_size_prec_str.c \
+	ft_size_prec_uni.c \
 	ft_join_lenght_int.c \
 	ft_join_flags_int.c \
 	ftf_join_flags.c \
@@ -47,6 +49,7 @@ SRCS_NAME = ft_printf.c \
 	ft_printf_octal.c \
 	ft_printf_unsigned.c \
 	ft_printf_percent.c \
+	ft_printf_unicode.c \
 	ft_check_flags_str.c \
 	ft_printf_pointer.c \
 	ft_printf_string.c \
@@ -85,7 +88,7 @@ $(OBJ_PATH)%.o: $(SRCS_PATH)%.c
 
 exe:
 		@make -C ./libft/
-		@cc $(FLAG) $(SRCS) ./srcs/main_test.c -g $(LIB) -o ft_printf
+		@cc $(SRCS) ./srcs/main.c $(LIB) -o ft_printf
 		@echo "$(LOG_CLEAR)$(C_GREEN)"Compiling" [ ft_printf ] $(SUCCESS)"
 		@./ft_printf
 

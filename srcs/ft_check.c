@@ -6,7 +6,7 @@
 /*   By: apissier <apissier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 18:34:35 by apissier          #+#    #+#             */
-/*   Updated: 2017/04/10 18:41:17 by apissier         ###   ########.fr       */
+/*   Updated: 2017/04/24 18:06:27 by apissier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,25 +68,4 @@ t_flags				ft_check_modifier(char i, char j, t_flags b)
 		return (b);
 	}
 	return (b);
-}
-
-int					ft_check_letter(va_list ap, char i, t_flags b)
-{
-	if (i == 'd' || i == 'D' || i == 'i')
-		return (ft_printf_di(ap, i, b));
-	else if (i == '%')
-		return (ft_printf_percent(b));
-	else if (i == 's')
-		return (ft_printf_string(ap, b));
-	else if (i == 'c' || i == 'C')
-		return (ft_printf_char(ap, b, i));
-	else if (i == 'x' || i == 'X')
-		return (ft_printf_hexa(ap, b, i));
-	else if (i == 'o' || i == 'O')
-		return (ft_printf_octal(ap, b, i));
-	else if (i == 'u' || i == 'U')
-		return (ft_printf_unsigned(ap, b, i));
-	else if (i == 'p')
-		return (ft_printf_pointer(ap, b));
-	return (0);
 }

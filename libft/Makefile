@@ -6,7 +6,7 @@
 #    By: apissier <apissier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/23 17:55:27 by apissier          #+#    #+#              #
-#    Updated: 2017/03/24 18:34:08 by apissier         ###   ########.fr        #
+#    Updated: 2017/04/11 16:11:21 by apissier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,7 @@ SRC = ft_atoi.c \
 	ft_strsub.c \
 	ft_strtrim.c \
 	ft_tolower.c \
+	ft_write_null.c \
 	ft_toupper.c
 
 OBJ = $(SRC:.c=.o)

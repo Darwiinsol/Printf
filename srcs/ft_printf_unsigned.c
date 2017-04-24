@@ -6,7 +6,7 @@
 /*   By: apissier <apissier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 16:14:47 by apissier          #+#    #+#             */
-/*   Updated: 2017/04/10 18:32:34 by apissier         ###   ########.fr       */
+/*   Updated: 2017/04/24 16:05:57 by apissier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ int					ft_printf_unsigned(va_list ap, t_flags b, char i)
 
 	b.letter = i;
 	u = ft_lenght_modifier_unsigned(ap, b);
-	str = ft_itoa_uintmax_t(u);
+	if (u == 0 && b.precision == 0)
+		str = ft_strdup("");
+	else
+		str = ft_itoa_uintmax_t(u);
 	str = ft_check_if_flags_int(b, str);
 	len = ft_free_return(&str);
 	return (len);

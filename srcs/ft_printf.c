@@ -6,7 +6,7 @@
 /*   By: apissier <apissier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 10:48:17 by apissier          #+#    #+#             */
-/*   Updated: 2017/04/10 18:37:41 by apissier         ###   ########.fr       */
+/*   Updated: 2017/04/24 18:16:13 by apissier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ t_flags				ft_getflag(const char *format, int *i, t_flags b)
 		b = ft_check_flags(format[*i + 1], b);
 		*i = *i + 1;
 	}
-	if (b.h != 0 && b.l != 0)
-		*i = *i + 1;
 	if (ft_isdigit(format[*i + 1]))
 	{
 		b.lenght = ft_atoi(&format[*i + 1]);

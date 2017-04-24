@@ -6,7 +6,7 @@
 /*   By: apissier <apissier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 16:17:51 by apissier          #+#    #+#             */
-/*   Updated: 2017/03/06 16:17:52 by apissier         ###   ########.fr       */
+/*   Updated: 2017/04/12 18:41:13 by apissier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char		*ft_size_lenght_str(t_flags b, char *str)
 	{
 		if (!(tmp = (char *)malloc(sizeof(char) * (len))))
 			return (NULL);
+		if (b.zero == 1 && b.minus != 1)
+			tmp = ft_memset(tmp, '0', b.lenght - ft_strlen(str));
 		else
 			tmp = ft_memset(tmp, ' ', b.lenght - ft_strlen(str));
 		tmp[b.lenght - ft_strlen(str)] = '\0';

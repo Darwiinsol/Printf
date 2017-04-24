@@ -6,7 +6,7 @@
 /*   By: apissier <apissier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 16:11:55 by apissier          #+#    #+#             */
-/*   Updated: 2017/04/10 17:53:14 by apissier         ###   ########.fr       */
+/*   Updated: 2017/04/24 18:19:45 by apissier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ static char		*ft_check_if_flags(t_flags b, char *str)
 {
 	if (b.lenght != 0)
 		str = ft_size_lenght(b, str);
-	if (b.precision != -1)
-		str = ft_size_prec(b, str);
 	return (str);
 }
 

@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_flags_str.c                               :+:      :+:    :+:   */
+/*   ft_size_prec_uni.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apissier <apissier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/06 15:29:04 by apissier          #+#    #+#             */
-/*   Updated: 2017/04/24 17:49:27 by apissier         ###   ########.fr       */
+/*   Created: 2017/04/24 16:50:42 by apissier          #+#    #+#             */
+/*   Updated: 2017/04/24 18:23:28 by apissier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-char		*ft_check_if_flags_str(t_flags b, char *str)
+static int	ft_check_nb_octet(char str)
 {
-	if (b.precision != -1 && b.letter == 'S')
-		str = ft_size_prec_uni(b, str);
-	if (b.precision != -1 && b.letter != 'c' && b.letter != 'C')
-		str = ft_size_prec_str(b, str);
-	if (b.lenght != 0)
-		str = ft_size_lenght_str(b, str);
+	if ((str & 128) == 0)
+		return (1);
+	if ((str & 224) == 192)
+		return (2);
+	if ((str & 240) == 224)
+		return (3);
+	if ((str & 248) == 240)
+		return (4);
+}
+
+char		*ft_size_prec_uni(t_flags b, char *str)
+{
+	int		nb_octet;
+	int		i;
+
+	nb_octet = 0;
+	i = 0;
+	while (i + nb_octet <= b.precision)
+	{
+		i += nb_octet;
+		nb_octet = ft_check_nb_octet(str[i]);
+	}
+	str[i] = '\0';
 	return (str);
 }

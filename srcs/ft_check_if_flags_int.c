@@ -6,7 +6,7 @@
 /*   By: apissier <apissier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 12:21:20 by apissier          #+#    #+#             */
-/*   Updated: 2017/03/06 15:33:26 by apissier         ###   ########.fr       */
+/*   Updated: 2017/04/24 18:13:36 by apissier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@ char			*ft_check_if_flags_int(t_flags b, char *str)
 		str = ft_strjoin("-", tmp);
 		ft_memdel((void **)&tmp);
 	}
-	if (b.plus == 1 && negative != 1)
-		str = ft_is_plus(b, str);
-	else if (b.blank == 1 && b.plus != 1 && negative != 1 && b.letter != 'u' \
-			&& b.letter != 'U')
-		str = ft_is_blank(str);
+	if (b.plus == 1)
+		str = ft_is_plus(b, str, negative);
+	else if (b.blank == 1 && b.plus != 1 && negative != 1)
+		str = ft_is_blank(b, str, negative);
 	str = ft_join_flags_int(b, str);
 	return (str);
 }

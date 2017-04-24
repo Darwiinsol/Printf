@@ -6,7 +6,7 @@
 /*   By: apissier <apissier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 16:13:01 by apissier          #+#    #+#             */
-/*   Updated: 2017/03/06 16:13:02 by apissier         ###   ########.fr       */
+/*   Updated: 2017/04/12 19:51:59 by apissier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,16 @@ int					ft_printf_pointer(va_list ap, t_flags b)
 	char			*str;
 
 	len = 0;
+	b.letter = 'p';
 	u = (unsigned long)va_arg(ap, void *);
-	str = ft_pointer_to_hex(u);
+	if (u == 0 && b.precision > -1)
+		str = ft_strdup("");
+	else
+		str = ft_pointer_to_hex(u);
 	if (str == NULL)
 		return (0);
 	str = ft_check_if_flags_int(b, str);
-	len = (ft_strlen(str) + 2);
-	ft_putstr("0x");
+	len = ft_strlen(str);
 	ft_putstr(str);
 	free(str);
 	return (len);
